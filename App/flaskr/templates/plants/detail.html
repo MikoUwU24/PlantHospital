@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ plant.name }} - Plant Details</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: linear-gradient(135deg, #e8f5e9 0%, #a2c5f4 100%);
+        margin: 0;
+        color: #222;
+      }
+      .hero {
+        background: linear-gradient(100deg, #4caf50 55%, #a2c5f4 100%);
+        color: #fff;
+        padding: 70px 0 48px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-title {
+        font-size: 2.7rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+        letter-spacing: 1px;
+      }
+      .hero-desc {
+        font-size: 1.19rem;
+        margin-bottom: 34px;
+        opacity: 0.93;
+      }
+      .hero-btns {
+        margin-top: 10px;
+      }
+      .hero-btn {
+        display: inline-block;
+        background: #fff;
+        color: #4caf50;
+        border-radius: 25px;
+        padding: 15px 34px;
+        margin: 0 8px;
+        font-weight: bold;
+        font-size: 1.05rem;
+        letter-spacing: 0.4px;
+        border: none;
+        box-shadow: 0 2px 10px #4caf5030;
+        transition: background 0.18s, color 0.18s;
+        cursor: pointer;
+        text-decoration: none;
+      }
+      .hero-btn:hover {
+        background: #2196f3;
+        color: #fff;
+      }
+      .plant-detail-section {
+        background: #f8fff8;
+        margin-top: -50px;
+        border-radius: 35px 35px 0 0;
+        box-shadow: 0 -2px 22px rgba(76, 175, 80, 0.06);
+        padding: 58px 0 56px 0;
+        min-height: 60vh;
+        display: flex;
+        justify-content: center;
+      }
+      .plant-card-detail {
+        background: #fff;
+        border-radius: 18px;
+        box-shadow: 0 5px 28px #a2c5f425;
+        padding: 38px 32px 32px 32px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        max-width: 520px;
+        width: 100%;
+        margin: 0 auto;
+        border: 1.5px solid #e0ebe8;
+        position: relative;
+        overflow: hidden;
+      }
+      .plant-card-detail img {
+        width: 140px;
+        height: 140px;
+        object-fit: cover;
+        border-radius: 22px;
+        margin-bottom: 18px;
+        background: #f7faf7;
+        box-shadow: 0 2px 11px #4caf5020;
+        border: 2.5px solid #e8f5e9;
+        transition: filter 0.2s;
+      }
+      .plant-card-detail h3 {
+        margin: 0 0 4px 0;
+        color: #4caf50;
+        font-size: 1.6rem;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+      .plant-card-detail .plant-sci {
+        color: #2196f3;
+        font-size: 1.12rem;
+        font-style: italic;
+        margin-bottom: 10px;
+      }
+      .plant-card-detail .plant-desc {
+        color: #444;
+        margin-bottom: 16px;
+        min-height: 40px;
+        font-size: 1.07rem;
+        line-height: 1.5;
+        text-align: center;
+        opacity: 0.93;
+      }
+      .plant-attr {
+        color: #222;
+        font-size: 1.05rem;
+        margin-bottom: 8px;
+        text-align: center;
+      }
+      .plant-attr strong {
+        color: #388e3c;
+        font-weight: 600;
+      }
+      .info-group {
+        margin-top: 18px;
+        width: 100%;
+      }
+      .info-title {
+        color: #2196f3;
+        font-weight: 700;
+        font-size: 1.13rem;
+        margin-bottom: 7px;
+        letter-spacing: 0.17px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .info-list {
+        margin: 0 0 0 22px;
+        padding: 0;
+        color: #333;
+        line-height: 1.7;
+        font-size: 1.05rem;
+        text-align: left;
+      }
+      .info-list li {
+        margin-bottom: 6px;
+      }
+      .disease-block {
+        background: #e3f2fd;
+        border-radius: 10px;
+        padding: 13px 18px;
+        margin-bottom: 14px;
+        box-shadow: 0 2px 11px #a2c5f428;
+      }
+      .disease-block .disease-title {
+        font-size: 1.09em;
+        font-weight: bold;
+        color: #1976d2;
+        margin-bottom: 3px;
+        letter-spacing: 0.15px;
+      }
+      .disease-block .symptoms {
+        color: #555;
+        margin-bottom: 2px;
+        font-size: 1.02em;
+      }
+      .disease-block .treatment {
+        color: #388e3c;
+        font-size: 1.02em;
+      }
+      .detail-back-btn {
+        margin-top: 18px;
+        background: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 12px;
+        padding: 10px 28px;
+        font-weight: 600;
+        font-size: 1.07rem;
+        text-decoration: none;
+        transition: background 0.2s, box-shadow 0.2s;
+        box-shadow: 0 2px 10px #4caf5030;
+        display: inline-block;
+        letter-spacing: 0.4px;
+        margin-bottom: 8px;
+      }
+      .detail-back-btn:hover {
+        background: #2196f3;
+        color: #fff;
+      }
+      @media (max-width: 700px) {
+        .hero {
+          padding: 30px 0 18px 0;
+        }
+        .plant-detail-section {
+          padding: 22px 0 28px 0;
+          border-radius: 12px;
+        }
+        .plant-card-detail {
+          padding: 14px 5vw 18px 5vw;
+          border-radius: 12px;
+          min-width: 0;
+        }
+        .plant-card-detail img {
+          width: 90px;
+          height: 90px;
+        }
+        .info-list {
+          margin-left: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-title">
+        <i class="fas fa-seedling"></i> Plant Encyclopedia
+      </div>
+      <div class="hero-desc">
+        Discover detailed information, care instructions, and common diseases
+        for popular crops.<br />
+        Learn, grow, and keep your plants healthy!
+      </div>
+      <div class="hero-btns">
+        <a href="{{ url_for('plant_list') }}" class="hero-btn"
+          ><i class="fas fa-arrow-left"></i> Back to List</a
+        >
+        <a
+          href="{{ url_for('home') }}"
+          class="hero-btn"
+          style="background: #4caf50; color: #fff"
+          ><i class="fas fa-home"></i> Back to Home</a
+        >
+      </div>
+    </section>
+    <!-- Detail Section -->
+    <section class="plant-detail-section">
+      <div class="plant-card-detail">
+        <img
+          src="{{ url_for('static', filename=plant.image) }}"
+          alt="{{ plant.name }}"
+        />
+        <h3>{{ plant.name }}</h3>
+        <div class="plant-sci">{{ plant.scientific_name }}</div>
+        <div class="plant-desc">{{ plant.description }}</div>
+        {% if plant.growth_cycle %}
+        <div class="plant-attr">
+          <strong>Growth Cycle:</strong> {{ plant.growth_cycle }}
+        </div>
+        {% endif %} {% if plant.nutrition %}
+        <div class="plant-attr">
+          <strong>Nutrition:</strong> {{ plant.nutrition }}
+        </div>
+        {% endif %} {% if plant.origin %}
+        <div class="plant-attr">
+          <strong>Origin:</strong> {{ plant.origin }}
+        </div>
+        {% endif %}
+        <div class="info-group">
+          <div class="info-title">
+            <i class="fas fa-hands-wash"></i> How to Care
+          </div>
+          <ul class="info-list">
+            {% for care in plant.care %}
+            <li>{{ care }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="info-group">
+          <div class="info-title">
+            <i class="fas fa-viruses"></i> Common Diseases
+          </div>
+          {% for disease in plant.diseases %}
+          <div class="disease-block">
+            <div class="disease-title">{{ disease.name }}</div>
+            <div class="symptoms">
+              <strong>Symptoms:</strong> {{ disease.symptoms }}
+            </div>
+            <div class="treatment">
+              <strong>Treatment:</strong> {{ disease.treatment }}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <a href="{{ url_for('plant_list') }}" class="detail-back-btn"
+          ><i class="fas fa-arrow-left"></i> Back to List</a
+        >
+      </div>
+    </section>
+  </body>
+</html>
